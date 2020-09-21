@@ -26,9 +26,9 @@ Visual Studio Code
 
 ### Java기초
 
-[ch04_Class&Object](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch04_class%26object/src)
+[Class&Object](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch04_class%26object/src)
 
-[ch05_Inheritance](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch05_inheritance/src)
+[Inheritance](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch05_inheritance/src)
 
 ### SQL기초
 
