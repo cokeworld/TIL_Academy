@@ -1,0 +1,32 @@
+body {
+    background-color: black;
+}
+
+h1 {
+    color: salmon;
+}
+
+.animal-group {
+
+}
+
+.second-title {
+    color: aquamarine;
+}
+
+.bishong {
+    color: chartreuse;
+}
+
+.legend {
+    border: dashed white;
+    width: 600px;
+    margin: auto;
+    color: violet;
+    font-size: 24px;
+}
+
+.legend-content {
+    color: white;
+    font-size: 14px;
+}

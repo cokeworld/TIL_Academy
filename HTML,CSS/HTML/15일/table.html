@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table, th, td {
+        border: solid 1px black;
+        text-align: center;
+    }
+    table {
+        border-collapse: collapse;
+        width: 200px;
+    }
+    th {
+        border-bottom: 2px solid black;
+        background-color: gray;
+    }
+    tr {
+        height: 2em;
+        transition: 200ms ease-in;
+    }
+    tr:hover{
+        background-color: turquoise;
+        transform: skew(30deg, 20deg);
+    }
+    
+</style>
+<body>
+    <table>
+        <tr>
+            <th>성
+            </th>
+            <th>이름</th>
+        </tr>
+        <tr>
+            <td>홍
+            </td>
+            <td>길동</td>
+        </tr>
+        <tr>
+            <td>김
+            </td>
+            <td>유신</td>
+        </tr>
+    </table>
+</body>
+</html>

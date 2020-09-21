@@ -1,0 +1,19 @@
+body {
+    background-color: pink;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 30px;;
+}
+
+.iu {
+    border-radius: 50%;
+    width: 200px;
+}
+
+.iu_description {
+    font-size: medium;
+    text-align: left;
+}
+
+table {
+    text-align: center;
+}

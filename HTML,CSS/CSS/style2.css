@@ -1,0 +1,61 @@
+body {
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    line-height: 1.5em;
+    align: center;
+  }
+  
+  .wiki {
+    width:1000px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    font-size: 38px;
+    color: tomato;
+  }
+  
+  h2, h3 { color: aqua; }
+  h2 { font-size: 30px; }
+  h3 { font-size: 24px; }
+  
+  p {
+    font-size: 20px;
+    color: yellowgreen;
+  }
+  
+  h3~p {
+    color: green;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.5em;
+  }
+  
+  h3+p {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .legend {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px dashed white;
+  }
+  
+  .legend p {
+    color: white;
+    font-size: 14px;
+    margin: 0 0 10px;
+  }
+  
+  .legend > p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: magenta;
+  }
+  
+  

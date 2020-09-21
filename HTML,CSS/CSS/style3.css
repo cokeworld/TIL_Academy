@@ -1,0 +1,20 @@
+#box1 {
+    border: 4mm ridge red;
+    width: 500px;
+    margin: auto;
+}
+
+#box2 {
+    border: 1rem solid gold;
+    margin: auto;
+    width: 500px;
+    margin-top: 40px;
+}
+
+#box3 {
+    border: 1px solid blue;
+    width: 500px;
+    margin: auto;
+    margin-top: 40px;
+    padding: 20px;
+}
