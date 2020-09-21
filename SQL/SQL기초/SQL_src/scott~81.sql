@@ -1,0 +1,30 @@
+--PIVOT
+SELECT * SUN, MON, TUE, WED, THU, FRI, SAT
+    FROM (SELECT WEEKNO
+                , DAY
+                , DAYNO
+            FROM CAL
+            )
+PIVOT
+(MAX(DAYNO)
+FOR DAY 
+IN('SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'))
+);
+
+SELECT ASCII('8')
+    FROM DUAL;
+    
+SELECT MAX(DECODE(DAY, 'SUN', DAYNO)) "SUN"
+      ,MAX(DECODE(DAY, 'MON', DAYNO)) "MON"
+      ,MAX(DECODE(DAY, 'TUE', DAYNO)) "TUE"
+      ,MAX(DECODE(DAY, 'WED', DAYNO)) "WED"
+      ,MAX(DECODE(DAY, 'THU', DAYNO)) "THU"
+      ,MAX(DECODE(DAY, 'FRI', DAYNO)) "FRI"
+      ,MAX(DECODE(DAY, 'SAT', DAYNO)) "SAT"
+    FROM CAL
+    GROUP BY WEEKNO
+    ORDER BY WEEKNO;
+    
+SELECT * FROM CAL;
+DESC CAL;
+

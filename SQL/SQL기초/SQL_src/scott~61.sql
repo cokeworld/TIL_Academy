@@ -1,0 +1,33 @@
+SELECT * FROM CAL;
+SELECT * FROM CAL10;
+
+CREATE TABLE CAL10 (
+    SUN INT,
+    MON INT,
+    TUE INT,
+    WED INT,
+    THU INT,
+    FRI INT,
+    SAT INT
+    );
+
+INSERT INTO CAL10 (SUN, MON, TUE, WED, THU, FRI, SAT)
+VALUES (
+       (SELECT DAYNO FROM CAL
+        WHERE DAY = 'SUN')
+       , (SELECT DAYNO FROM CAL
+        WHERE DAY = 'MON')
+       , (SELECT DAYNO FROM CAL
+        WHERE DAY = 'TUE')
+       , (SELECT DAYNO FROM CAL
+        WHERE DAY = 'WED')
+       , (SELECT DAYNO FROM CAL
+        WHERE DAY = 'THU')
+       , (SELECT DAYNO FROM CAL
+        WHERE DAY = 'FRI')
+       , (SELECT DAYNO FROM CAL
+        WHERE DAY = 'SAT')
+        );
+        
+-- , MON, TUE, WED, THU, FRI, SAT       
+-- DAYNO, DAYNO, DAYNO, DAYNO, DAYNO, DAYNO

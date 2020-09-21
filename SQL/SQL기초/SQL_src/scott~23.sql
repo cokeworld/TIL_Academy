@@ -1,0 +1,67 @@
+SELECT * FROM EMP2;
+SELECT NAME, POSITION, PAY
+FROM EMP2;
+
+SELECT NAME, 
+       POSITION,
+       TO_CHAR(PAY, '$999,999,999') "SALARY"
+FROM EMP2 A
+WHERE PAY >= (SELECT AVG(PAY) 
+            FROM EMP2 B
+            WHERE A.POSITION = B.POSITION);
+            
+SELECT * FROM STUDENT;
+SELECT * FROM DEPARTMENT;
+
+SELECT NAME "STUD_NAME"
+      ,DNAME "DEPT_NAME"
+    FROM STUDENT, DEPARTMENT 
+    WHERE DEPTNO1 = (SELECT DEPTNO1
+                    FROM STUDENT
+                    WHERE NAME = 'Anthony Hopkins')
+    AND DEPTNO1 = DEPTNO;
+    
+SELECT * FROM PROFESSOR;
+SELECT * FROM DEPARTMENT;
+
+SELECT P.NAME
+      ,P.HIREDATE
+      ,D.DNAME
+    FROM PROFESSOR P, DEPARTMENT D
+    WHERE P.HIREDATE > (SELECT P.HIREDATE
+                      FROM PROFESSOR P
+                      WHERE NAME = 'Meg Ryan')
+    AND P.DEPTNO = D.DEPTNO;
+
+SELECT * FROM EMP2;
+SELECT * FROM DEPT3;
+
+SELECT E.EMPNO
+      ,E.NAME
+      ,E.DEPTNO
+    FROM EMP2 E
+    WHERE E.DEPTNO IN (SELECT D.DCODE
+                        FROM DEPT3 D
+                      WHERE AREA = 'Pohang Main Office');
+
+SELECT * FROM EMP2;
+
+SELECT NAME
+      ,POSITION
+      ,TO_CHAR(PAY, '$999,999,999') "SALARY"
+FROM EMP2
+WHERE PAY > ANY (SELECT PAY 
+            FROM EMP2
+            WHERE POSITION = 'Section head')
+ORDER BY SALARY DESC;
+
+SELECT * FROM STUDENT;
+SELECT NAME
+      ,GRADE
+      ,WEIGHT
+    FROM STUDENT
+    WHERE WEIGHT < (SELECT MIN(WEIGHT)
+                    FROM STUDENT
+                    WHERE GRADE = 2
+                    );
+        
