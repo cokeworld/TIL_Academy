@@ -28,7 +28,11 @@ Visual Studio Code
 
 [Class&Object](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch04_class%26object/src)
 
+[if&while](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch03_if%26while)
+
 [Inheritance](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch05_inheritance/src)
+
+[GUI](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch10_GUI)
 
 ### SQL기초
 
