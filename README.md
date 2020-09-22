@@ -26,6 +26,10 @@ Visual Studio Code
 
 ### Java기초
 
+[method, datatype, operator](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch02_method%2C%20datatype%2C%20operator)
+
+[for, if, while, array, try&catch](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch03_for%2C%20if%2C%20while%2C%20array%2C%20try%26catch)
+
 [class&object](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch04_class%26object/src)
 
 [if&while](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch03_if%26while)
