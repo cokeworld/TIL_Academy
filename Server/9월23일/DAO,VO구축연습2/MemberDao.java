@@ -193,7 +193,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		
 		try {
-			getConnection();
+			con = getConnection();
 			
 			//sqlπÆ ¡ÿ∫Ò
 			sql = "UPDATE member ";			
