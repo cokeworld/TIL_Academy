@@ -58,3 +58,6 @@ Visual Studio Code
 
 [9월23일(DAO,DV구축)](https://github.com/cokeworld/TIL_Academy/tree/master/Server/9%EC%9B%9423%EC%9D%BC)
 
+[9월24일(스레드 기초](https://github.com/cokeworld/TIL_Academy/tree/master/Server/9%EC%9B%9424%EC%9D%BC)
+
+
