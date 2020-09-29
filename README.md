@@ -60,4 +60,10 @@ Visual Studio Code
 
 [9월24일(스레드 기초](https://github.com/cokeworld/TIL_Academy/tree/master/Server/9%EC%9B%9424%EC%9D%BC)
 
+### JSP
 
+[9월28일(Servelt과 JSP기초)](https://github.com/cokeworld/TIL_Academy/tree/master/JSP/9%EC%9B%9428%EC%9D%BC)
+
+### JavaScript
+
+[9월29일(JS기초)]()
