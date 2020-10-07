@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+<script>
+	function Car(model, speed, color) {
+		this.model=model;
+		this.speed=speed;
+		this.color=color;
+		// this가 꼭 붙어야 구성요소가 된다.(Java와의 차이)
+		this.brake = function() {
+			speed -=10;
+			}
+		this.accel=function() {
+			speed+=10;
+		}
+		
+	}
+	myCar = new Car('520d', 200, 'black');
+	console.log(myCar);
+	
+	myCar.turbo = false;
+	myCar.showSpec=function() {
+		console.log(this.model + '의 최고속도' + this.speed);
+	}
+	console.log(myCar);
+	myCar.showSpec();
+	
+</script>
+</html>
