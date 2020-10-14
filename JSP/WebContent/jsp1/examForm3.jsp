@@ -11,7 +11,7 @@
 	<h1>examForm3.jsp 페이지</h1>
 	<hr>
 	
-	<form action="examProcess3.jsp" method="post">
+	<form action="examProcess3.jsp" method="get">
 		이름: <input type="text" name="name"><br>
 		성별: <input type="radio" name="gender" value="남">남성
 			  <input type="radio" name="gender" value="여">여성

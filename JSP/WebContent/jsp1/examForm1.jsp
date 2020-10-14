@@ -12,7 +12,7 @@
 	<h1>examForm1.jsp 페이지</h1>
 	<hr>
 	
-	<form action="examProcess.jsp" method="post">
+	<form action="examProcess.jsp" method="get">
 		숫자를 입력:
 		<input type="number" name="num" min="0" max="100">
 		<input type="submit" value="전송">
