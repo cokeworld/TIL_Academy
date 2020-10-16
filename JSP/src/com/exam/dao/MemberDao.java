@@ -218,7 +218,7 @@ public class MemberDao {
 		return memberVo;
 	} // getMemberById()
 	
-	// 특정id에 해당하는 회원의 이름 수정하기
+	// 특정id에 해당하는 회원정보 수정하기
 	public void update(MemberVo memberVo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -228,12 +228,20 @@ public class MemberDao {
 			
 			String sql = "";
 			sql += "UPDATE member ";
-			sql += "SET name = ? ";
+			sql += "SET passwd = ?, ";
+			sql += "name = ?, ";
+			sql += "age = ?, ";
+			sql += "gender = ?, ";
+			sql += "email = ? ";
 			sql += "WHERE id = ? ";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, memberVo.getName());
-			pstmt.setString(2, memberVo.getId());
+			pstmt.setString(1, memberVo.getPasswd());
+			pstmt.setString(2, memberVo.getName());
+			pstmt.setInt(3, memberVo.getAge());
+			pstmt.setString(4, memberVo.getGender());
+			pstmt.setString(5, memberVo.getEmail());
+			pstmt.setString(6, memberVo.getId());
 			
 			pstmt.executeUpdate();
 			
@@ -244,7 +252,8 @@ public class MemberDao {
 			// try블록에서 만든 객체를 정리하는 작업을 주로 함
 			close(con, pstmt);
 		}
-	} // addMember()
+	} // updateAll()
+	
 	
 	// 특정id에 해당하는 회원 1명 삭제하기
 	public void deleteById(String id) {
