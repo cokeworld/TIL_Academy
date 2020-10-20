@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.exam.vo.BoardVo;
 import com.exam.vo.MemberVo;
+import com.mysql.cj.protocol.Resultset;
 
 public class BoardDao {
 	// ΩÃ±€≈Ê
@@ -133,13 +134,23 @@ public class BoardDao {
 	
 	
 	public void updateReadcount(int num) {
-		
+		Connection con = null;
+		PreparedStatement pstmt = null;
 		String sql = "";
 		
-		sql  = "UPDATE board ";
-		sql += "SET readcount = readcount + 1 ";
-		sql += "WHERE num = ? ";
-		
+		try {
+			con = JdbcUtils.getConnection();
+			sql  = "UPDATE board ";
+			sql += "SET readcount = readcount + 1 ";
+			sql += "WHERE num = ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.close(con, pstmt);
+		}
 	} // updateReadcount()
 	
 	public int getCount() {
@@ -213,6 +224,42 @@ public class BoardDao {
 		return list;
 	} // getBoards()
 	
+	public void updateBoard(BoardVo boardVo) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		try {
+			con = JdbcUtils.getConnection();
+			sql = "UPDATE board ";
+			sql += "SET name = ?, subject = ?, content = ?";
+			sql	+= "WHERE num = ?;";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, boardVo.getName());
+			pstmt.setString(2, boardVo.getSubject());
+			pstmt.setString(3, boardVo.getContent());
+			pstmt.setInt(4, boardVo.getNum());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.close(con, pstmt);
+		}
+	}
+	
+	
+	public boolean isPasswdOk(int num, String passwd) {
+		BoardDao boardDao = BoardDao.getInstance();
+		BoardVo boardVo = boardDao.getBoardByNum(num);
+		String originalPasswd = boardVo.getPasswd();
+		if(originalPasswd.equals(passwd)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public void deleteAllData() {
 		
 		Connection con = null;
@@ -230,6 +277,7 @@ public class BoardDao {
 			JdbcUtils.close(con, pstmt);
 		}
 	} // deleteAllData
+	
 	
 	public static void main(String[] args) {
 		
