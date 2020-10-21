@@ -42,11 +42,17 @@ table {
 th.subject {
 	width: 250px;
 }
+a.active {
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
 	<h1>글목록 (전체글갯수: <%=count %>)</h1>
 	<hr>
+	
+	<h3><a href="writeForm.jsp">글쓰기</a></h3>
+	
 	<table border="1">
 		<thead>
 			<tr>
@@ -55,33 +61,81 @@ th.subject {
 		</thead>
 		<tbody>
 		<%
-			if (count>0) {
-				for (BoardVo boardVo : boardList) {
-		%>
-			<tr>
-				<td><%=boardVo.getNum() %></td>
-<!-- 		확인하자 -->
-				<td><a href="content.jsp?num=<%=boardVo.getNum() %>&pageNum=<%=pageNum %>"><%=boardVo.getSubject() %></a></td>
-				<td><%=boardVo.getName() %></td>
-				<td><%=boardVo.getRegDate() %></td>
-				<td><%=boardVo.getReadcount() %></td>
-				<td><%=boardVo.getIp() %></td>
-			</tr>
-		<%
-				}
-			} else {
+		if (count > 0) {
+			for (BoardVo boardVo : boardList) {
 				%>
 				<tr>
-					<td colspan="6">게시판 글 없음</td>
-				</tr>		
-		<%
+					<td><%=boardVo.getNum() %></td>
+					<td><a href="content.jsp?num=<%=boardVo.getNum() %>&pageNum=<%=pageNum %>"><%=boardVo.getSubject() %></a></td>
+					<td><%=boardVo.getName() %></td>
+					<td><%=boardVo.getRegDate() %></td>
+					<td><%=boardVo.getReadcount() %></td>
+					<td><%=boardVo.getIp() %></td>
+				</tr>
+				<%
 			}
+		} else { // count == 0
+			%>
+			<tr>
+				<td colspan="6">게시판 글 없음</td>
+			</tr>
+			<%
+		}
 		%>
 		</tbody>
 	</table>
 	
 	<%
-
+	// 글갯수가 0보다 크면 페이지블록 계산해서 출력하기
+	if (count > 0) {
+		// 총 필요한 페이지 갯수 구하기
+		// 글50개. 한화면에보여줄글 10개 => 50/10 = 5 
+		// 글55개. 한화면에보여줄글 10개 => 55/10 = 5 + 1페이지(나머지존재) => 6
+		int pageCount = (count / pageSize) + (count % pageSize == 0 ? 0 : 1);
+		//int pageCount = (int) Math.ceil((double) count / pageSize);
+		
+		// 한 화면에 보여줄 페이지갯수 설정
+		int pageBlock = 5;
+		
+		// 화면에 보여줄 시작페이지번호 구하기
+		// 1~5          6~10          11~15          16~20       ...
+		// 1~5 => 1     6~10 => 6     11~15 => 11    16~20 => 16
+		int startPage = ((pageNum / pageBlock) - (pageNum % pageBlock == 0 ? 1 : 0)) * pageBlock + 1;
+		
+		// 화면에 보여줄 끝페이지번호 구하기
+		int endPage = startPage + pageBlock - 1;
+		if (endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		// [이전]
+		if (startPage > pageBlock) {
+			%>
+			<a href="list.jsp?pageNum=<%=startPage - pageBlock %>">[이전]</a>
+			<%
+		}
+		
+		// 1 ~ 5
+		for (int i=startPage; i<=endPage; i++) {
+			if (i == pageNum) {
+				%>
+				<a href="list.jsp?pageNum=<%=i %>" class="active">[<%=i %>]</a>
+				<%
+			} else {
+				%>
+				<a href="list.jsp?pageNum=<%=i %>">[<%=i %>]</a>
+				<%
+			}
+		} // for
+		
+		
+		// [다음]
+		if (endPage < pageCount) {
+			%>
+			<a href="list.jsp?pageNum=<%=startPage + pageBlock %>">[다음]</a>
+			<%
+		}
+	}
 	%>
 </body>
 </html>
