@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>게시판 글쓰기</h1>
+	<hr>
 	<form action="writePro.jsp" method="post">
 		<table border="1">
 			<tr>
@@ -34,5 +36,9 @@
 			</tr>
 		</table>
 	</form>
+
 </body>
 </html>
+
+
+

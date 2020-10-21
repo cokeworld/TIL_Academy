@@ -2,13 +2,15 @@
 <%@page import="com.exam.dao.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%
+// int num, String pageNum  파라미터값 가져오기
 int num = Integer.parseInt(request.getParameter("num"));
 String pageNum = request.getParameter("pageNum");
 
+// DAO 객체준비
 BoardDao boardDao = BoardDao.getInstance();
 
+// 글번호에 해당하는 글한개 가져오기
 BoardVo boardVo = boardDao.getBoardByNum(num);
 %>
 <!DOCTYPE html>
@@ -18,19 +20,19 @@ BoardVo boardVo = boardDao.getBoardByNum(num);
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>게시글 수정</h1>
+	<h1>게시판 글수정</h1>
 	<hr>
 	<form action="updatePro.jsp" method="post">
+		<input type="hidden" name="pageNum" value="<%=pageNum %>">
 		<input type="hidden" name="num" value="<%=num %>">
 		<table border="1">
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" name="name" value="<%=boardVo.getName() %>" readonly></td>
+				<td><input type="text" name="name" value="<%=boardVo.getName() %>" required></td>
 			</tr>
 			<tr>
 				<th>패스워드</th>
-				<td><input type="password" name="passwd" value="" required></td>
-				
+				<td><input type="password" name="passwd" required></td>
 			</tr>
 			<tr>
 				<th>제목</th>
@@ -42,10 +44,16 @@ BoardVo boardVo = boardDao.getBoardByNum(num);
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="수정하기">
+					<input type="submit" value="글수정">
+					<input type="reset" value="다시쓰기">
+					<input type="button" value="글목록" onclick="location.href='list.jsp?pageNum=<%=pageNum %>'">
 				</td>
 			</tr>
 		</table>
 	</form>
+
 </body>
 </html>
+
+
+
