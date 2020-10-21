@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.exam.vo.BoardVo;
-import com.exam.vo.MemberVo;
-import com.mysql.cj.protocol.Resultset;
 
 public class BoardDao {
 	// 싱글톤
@@ -20,9 +18,9 @@ public class BoardDao {
 	public static BoardDao getInstance() {
 		return instance;
 	}
+	/////////////
 
 	private BoardDao() {}
-	
 	
 	public int getNextNum() {
 		Connection con = null;
@@ -136,16 +134,21 @@ public class BoardDao {
 	public void updateReadcount(int num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		
 		String sql = "";
 		
 		try {
 			con = JdbcUtils.getConnection();
+			
 			sql  = "UPDATE board ";
 			sql += "SET readcount = readcount + 1 ";
 			sql += "WHERE num = ? ";
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
+			
 			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -153,23 +156,27 @@ public class BoardDao {
 		}
 	} // updateReadcount()
 	
+	
+	// 전체글갯수 가져오기
 	public int getCount() {
-		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		int count = 0;
-		String sql="";
+		String sql = "";
 		
 		try {
 			con = JdbcUtils.getConnection();
+			
 			sql = "SELECT COUNT(*) FROM board";
+			
 			pstmt = con.prepareStatement(sql);
+			
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
-				count=rs.getInt(1);
+			if (rs.next()) {
+				count = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -180,25 +187,29 @@ public class BoardDao {
 	} // getCount()
 	
 	
-	public List<BoardVo> getBoards(int startRaw, int pageSize) {
-		
+	public List<BoardVo> getBoards(int startRow, int pageSize) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "";
+		
 		List<BoardVo> list = new ArrayList<>();
+		String sql = "";
 		
 		try {
 			con = JdbcUtils.getConnection();
-			sql = "SELECT * FROM BOARD ORDER BY NUM DESC LIMIT ?,?";
+			
+			sql  = "SELECT * ";
+			sql += "FROM board ";
+			sql += "ORDER BY num DESC ";
+			sql += "LIMIT ?, ? ";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, startRaw);
+			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, pageSize);
 			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
+			while (rs.next()) {
 				BoardVo boardVo = new BoardVo();
 				boardVo.setNum(rs.getInt("num"));
 				boardVo.setName(rs.getString("name"));
@@ -215,7 +226,6 @@ public class BoardDao {
 				
 				list.add(boardVo);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -224,75 +234,113 @@ public class BoardDao {
 		return list;
 	} // getBoards()
 	
-	public void updateBoard(BoardVo boardVo) {
-		
+	// 글번호에 해당하는 패스워드 일치여부 확인하기
+	public boolean isPasswdOk(int num, String passwd) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		boolean isPasswdOk = false;
 		String sql = "";
 		
 		try {
 			con = JdbcUtils.getConnection();
-			sql = "UPDATE board ";
-			sql += "SET name = ?, subject = ?, content = ?";
-			sql	+= "WHERE num = ?;";
+			
+			sql  = "SELECT COUNT(*) ";
+			sql += "FROM board ";
+			sql += "WHERE num = ? ";
+			sql += "AND passwd = ? ";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, passwd);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				if (count == 1) {
+					isPasswdOk = true;
+				} else {
+					isPasswdOk = false;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.close(con, pstmt, rs);
+		}
+		return isPasswdOk;
+	} // isPasswdOk()
+	
+	
+	public void updateBoard(BoardVo boardVo) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "";
+		
+		try {
+			con = JdbcUtils.getConnection();
+			
+			sql  = "UPDATE board ";
+			sql += "SET name = ?, subject = ?, content = ? ";
+			sql += "WHERE num = ? ";
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, boardVo.getName());
 			pstmt.setString(2, boardVo.getSubject());
 			pstmt.setString(3, boardVo.getContent());
 			pstmt.setInt(4, boardVo.getNum());
+			
 			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			JdbcUtils.close(con, pstmt);
 		}
-	}
+	} // updateBoard
 	
 	
-	public boolean isPasswdOk(int num, String passwd) {
-		BoardDao boardDao = BoardDao.getInstance();
-		BoardVo boardVo = boardDao.getBoardByNum(num);
-		String originalPasswd = boardVo.getPasswd();
-		if(originalPasswd.equals(passwd)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 	
-	public void deleteAllData() {
-		
+	public void deleteBoardByNum(int num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "";
 		
 		try {
 			con = JdbcUtils.getConnection();
-			sql = "DELETE FROM board";
+			
+			sql = "DELETE FROM board WHERE num = ?";
+			
 			pstmt = con.prepareStatement(sql);
-			pstmt.executeQuery();
+			pstmt.setInt(1, num);
+			
+			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			JdbcUtils.close(con, pstmt);
 		}
-	} // deleteAllData
+	} // deleteBoard
+	
 	
 	
 	public static void main(String[] args) {
 		
-		BoardDao boardDao = new BoardDao();
-//		boardDao.deleteAllData();
+		BoardDao boardDao = BoardDao.getInstance();
 		
-		for(int i=0; i<100; i++) {
+		for (int i=0; i<100; i++) {
 			BoardVo boardVo = new BoardVo();
-			int num = boardDao.getNextNum();
 			
-			boardVo.setNum(1+i);
-			boardVo.setName("홍길동"+i);
-			boardVo.setPasswd("111"+i);
-			boardVo.setSubject("홍길동의 게시물" + i);
-			boardVo.setContent("홍길동 게시물 콘텐트" + i);
+			int num = boardDao.getNextNum();
+			boardVo.setNum(num);
+			boardVo.setName("홍길동" + num);
+			boardVo.setPasswd("1234");
+			boardVo.setSubject("글제목" + num);
+			boardVo.setContent("글내용" + num);
 			boardVo.setReadcount(0);
 			boardVo.setRegDate(new Timestamp(System.currentTimeMillis()));
 			boardVo.setIp("127.0.0.1");
@@ -300,7 +348,11 @@ public class BoardDao {
 			boardVo.setReLev(0);
 			boardVo.setReSeq(0);
 			
+			System.out.println(boardVo);
+			
 			boardDao.addBoard(boardVo);
-		}
+		} // for
+		
 	} // main()
+	
 }
