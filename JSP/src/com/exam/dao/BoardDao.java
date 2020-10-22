@@ -200,7 +200,7 @@ public class BoardDao {
 			
 			sql  = "SELECT * ";
 			sql += "FROM board ";
-			sql += "ORDER BY num DESC ";
+			sql += "ORDER BY re_ref DESC, re_seq ASC ";
 			sql += "LIMIT ?, ? ";
 			
 			pstmt = con.prepareStatement(sql);
@@ -326,11 +326,91 @@ public class BoardDao {
 		}
 	} // deleteBoard
 	
+	public void deleteAllBoards() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		try {
+			con = JdbcUtils.getConnection();
+			
+			sql = "DELETE FROM board WHERE num = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.close(con, pstmt);
+		}
+	} // deleteAllBoards
+	
+	
+	
+	public boolean updateAndAddReply(BoardVo boardVo) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+
+		try {
+			con = JdbcUtils.getConnection();
+			con.setAutoCommit(false);
+			
+			sql = "UPDATE board ";
+			sql += "SET re_seq = re_seq + 1 ";
+			sql += "WHERE re_ref = ? AND re_seq = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, boardVo.getReRef());
+			pstmt.setInt(2, boardVo.getReSeq());
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			sql  = "INSERT INTO board (num, name, passwd, subject, content, readcount, reg_date, ip, file, re_ref, re_lev, re_seq) ";
+			sql += "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, boardVo.getNum());
+			pstmt.setString(2, boardVo.getName());
+			pstmt.setString(3, boardVo.getPasswd());
+			pstmt.setString(4, boardVo.getSubject());
+			pstmt.setString(5, boardVo.getContent());
+			pstmt.setInt(6, boardVo.getReadcount());
+			pstmt.setTimestamp(7, boardVo.getRegDate());
+			pstmt.setString(8, boardVo.getIp());
+			pstmt.setString(9, boardVo.getFile());
+			pstmt.setInt(10, boardVo.getReRef());     // 같은 그룹
+			pstmt.setInt(11, boardVo.getReLev() + 1); // 답글쓰는 대상글의 들여쓰기 + 1
+			pstmt.setInt(12, boardVo.getReSeq() + 1); // 답글쓰는 대상글의 그룹내 순번 + 1
+			pstmt.executeUpdate();
+			
+			con.commit();
+			con.setAutoCommit(true);
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			return false;
+		} finally {
+			JdbcUtils.close(con, pstmt);
+		}
+
+	} // updateAndAddReply
+	
+	
 	
 	
 	public static void main(String[] args) {
 		
 		BoardDao boardDao = BoardDao.getInstance();
+		boardDao.deleteAllBoards();
 		
 		for (int i=0; i<100; i++) {
 			BoardVo boardVo = new BoardVo();

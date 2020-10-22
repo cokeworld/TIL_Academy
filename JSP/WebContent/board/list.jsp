@@ -66,7 +66,18 @@ a.active {
 				%>
 				<tr>
 					<td><%=boardVo.getNum() %></td>
-					<td><a href="content.jsp?num=<%=boardVo.getNum() %>&pageNum=<%=pageNum %>"><%=boardVo.getSubject() %></a></td>
+					<td>
+						<%
+						int reLev = boardVo.getReLev();
+						if(reLev>0) {
+							%>
+							<img src="../images/level.gif" width=<%=reLev * 15%> height=15>
+							<img src="../images/re.gif">
+							<%
+						}
+						%>
+						<a href="content.jsp?num=<%=boardVo.getNum() %>&pageNum=<%=pageNum %>"><%=boardVo.getSubject() %></a>
+					</td>
 					<td><%=boardVo.getName() %></td>
 					<td><%=boardVo.getRegDate() %></td>
 					<td><%=boardVo.getReadcount() %></td>

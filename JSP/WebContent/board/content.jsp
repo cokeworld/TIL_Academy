@@ -15,6 +15,10 @@
 	
 	// 글번호에 해당하는 글 한개 가져오기
 	BoardVo boardVo = boardDao.getBoardByNum(num);
+	int reRef = boardVo.getReRef();
+	int reLev = boardVo.getReLev();
+	int reSeq = boardVo.getReSeq();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -49,7 +53,7 @@ table {
 			<td colspan="4">
 				<input type="button" value="글수정" onclick="location.href='updateForm.jsp?num=<%=num %>&pageNum=<%=pageNum %>'">
 				<input type="button" value="글삭제" onclick="location.href='deleteForm.jsp?num=<%=num %>&pageNum=<%=pageNum %>'">
-				<input type="button" value="답글쓰기">
+				<input type="submit" value="답글달기" onclick="location.href='reWriteForm.jsp?reRef=<%=reRef %>&reLev=<%=reLev%>&reSeq=<%=reSeq%>&pageNum=<%=pageNum%>'">
 				<input type="button" value="글목록" onclick="location.href='list.jsp?pageNum=<%=pageNum %>'">
 			</td>
 		</tr>
