@@ -15,10 +15,6 @@
 	
 	// 글번호에 해당하는 글 한개 가져오기
 	BoardVo boardVo = boardDao.getBoardByNum(num);
-	int reRef = boardVo.getReRef();
-	int reLev = boardVo.getReLev();
-	int reSeq = boardVo.getReSeq();
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -47,13 +43,33 @@ table {
 			<th>글제목</th><td colspan="3"><%=boardVo.getSubject() %></td>
 		</tr>
 		<tr>
+			<th>파일</th>
+			<td colspan="3">
+				<%
+				if (boardVo.getFile() != null) {
+					String filename = boardVo.getFile();
+					%>
+					<a href="../upload/<%=filename %>"><%=filename %></a>
+					<%
+					if (filename.endsWith("jpg") || filename.endsWith("jpeg") 
+							|| filename.endsWith("gif") || filename.endsWith("png")) {
+						%>
+						<br>
+						<img src="../upload/<%=filename %>" width="100" height="100">
+						<%
+					}
+				}
+				%>
+			</td>
+		</tr>
+		<tr>
 			<th>글내용</th><td colspan="3"><pre><%=boardVo.getContent() %></pre></td>
 		</tr>
 		<tr>
 			<td colspan="4">
 				<input type="button" value="글수정" onclick="location.href='updateForm.jsp?num=<%=num %>&pageNum=<%=pageNum %>'">
 				<input type="button" value="글삭제" onclick="location.href='deleteForm.jsp?num=<%=num %>&pageNum=<%=pageNum %>'">
-				<input type="submit" value="답글달기" onclick="location.href='reWriteForm.jsp?reRef=<%=reRef %>&reLev=<%=reLev%>&reSeq=<%=reSeq%>&pageNum=<%=pageNum%>'">
+				<input type="button" value="답글쓰기" onclick="location.href='reWriteForm.jsp?reRef=<%=boardVo.getReRef() %>&reLev=<%=boardVo.getReLev() %>&reSeq=<%=boardVo.getReSeq() %>&pageNum=<%=pageNum %>'">
 				<input type="button" value="글목록" onclick="location.href='list.jsp?pageNum=<%=pageNum %>'">
 			</td>
 		</tr>

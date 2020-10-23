@@ -12,15 +12,22 @@ import java.util.List;
 import com.exam.vo.BoardVo;
 
 public class BoardDao {
-	// ΩÃ±€≈Ê
-	private static BoardDao instance = new BoardDao();
-	
-	public static BoardDao getInstance() {
-		return instance;
-	}
-	/////////////
-
 	private BoardDao() {}
+
+	// ΩÃ±€≈Ê
+
+	public static class LazyHolder {
+		public static final BoardDao instance = new BoardDao();
+	}
+	public static BoardDao getInstance() {
+		return LazyHolder.instance;
+	}
+//	private static BoardDao instance = new BoardDao();
+//	
+//	public static BoardDao getInstance() {
+//		return instance;
+//	}
+	/////////////
 	
 	public int getNextNum() {
 		Connection con = null;
@@ -334,7 +341,7 @@ public class BoardDao {
 		try {
 			con = JdbcUtils.getConnection();
 			
-			sql = "DELETE FROM board WHERE num = ?";
+			sql = "DELETE FROM board";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
@@ -410,7 +417,7 @@ public class BoardDao {
 	public static void main(String[] args) {
 		
 		BoardDao boardDao = BoardDao.getInstance();
-		boardDao.deleteAllBoards();
+//		boardDao.deleteAllBoards();
 		
 		for (int i=0; i<100; i++) {
 			BoardVo boardVo = new BoardVo();
@@ -418,7 +425,7 @@ public class BoardDao {
 			int num = boardDao.getNextNum();
 			boardVo.setNum(num);
 			boardVo.setName("»´±Êµø" + num);
-			boardVo.setPasswd("1234");
+			boardVo.setPasswd("1");
 			boardVo.setSubject("±€¡¶∏Ò" + num);
 			boardVo.setContent("±€≥ªøÎ" + num);
 			boardVo.setReadcount(0);
