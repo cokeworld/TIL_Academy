@@ -8,14 +8,19 @@
 request.setCharacterEncoding("utf-8");
 
 // VO 객체 준비
-BoardVo boardVo = new BoardVo();
-
+// BoardVo boardVo = new BoardVo();
+%>
+<jsp:useBean id="boardVo" class="com.exam.vo.BoardVo"/>
+<%
 // 파라미터값 가져와서 VO에 저장
-boardVo.setName(request.getParameter("name"));
-boardVo.setPasswd(request.getParameter("passwd"));
-boardVo.setSubject(request.getParameter("subject"));
-boardVo.setContent(request.getParameter("content"));
+// boardVo.setName(request.getParameter("name"));
+// boardVo.setPasswd(request.getParameter("passwd"));
+// boardVo.setSubject(request.getParameter("subject"));
+// boardVo.setContent(request.getParameter("content"));
+%>
+<jsp:setProperty name="boardVo" property="*"/>
 
+<%
 // DAO 객체 준비
 BoardDao boardDao = BoardDao.getInstance();
 
@@ -37,7 +42,7 @@ boardVo.setReSeq(0); // 주글일때는 글그룹 내에서 순번이 0 (첫번�
 boardDao.addBoard(boardVo);
 
 // 글내용 상세보기 화면 content.jsp로 이동
-response.sendRedirect("content.jsp?num=" + boardVo.getNum());
+response.sendRedirect("content.jsp?num=" + boardVo.getNum() + "&pageNum=1");
 %>
 
 

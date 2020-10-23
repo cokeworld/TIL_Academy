@@ -6,19 +6,26 @@
 // post 파라미터값 한글처리
 request.setCharacterEncoding("utf-8");
 
-// VO 객체 준비
-BoardVo boardVo = new BoardVo();
-
 // 파라미터값 pageNum 가져오기
 String pageNum = request.getParameter("pageNum");
 
-// 파라미터값 찾아서 VO에 저장
-boardVo.setNum(Integer.parseInt(request.getParameter("num")));
-boardVo.setName(request.getParameter("name"));
-boardVo.setPasswd(request.getParameter("passwd")); // 글쓴이 본인확인용.
-boardVo.setSubject(request.getParameter("subject"));
-boardVo.setContent(request.getParameter("content"));
+// VO 객체 준비
+// BoardVo boardVo = new BoardVo();
+%>
+<jsp:useBean id="boardVo" class="com.exam.vo.BoardVo"/>
+<%
 
+// 파라미터값 찾아서 VO에 저장
+// boardVo.setNum(Integer.parseInt(request.getParameter("num")));
+// boardVo.setName(request.getParameter("name"));
+// boardVo.setPasswd(request.getParameter("passwd")); // 글쓴이 본인확인용.
+// boardVo.setSubject(request.getParameter("subject"));
+// boardVo.setContent(request.getParameter("content"));
+
+%>
+<jsp:setProperty property="*" name="boardVo"/>
+
+<%
 // DAO 객체 준비
 BoardDao boardDao = BoardDao.getInstance();
 
