@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-section {
-	border: 1px solid red;
+table {
+	width: 300px;
 }
 </style>
 </head>
@@ -15,7 +15,7 @@ section {
 	<table border="1">
 		<thead>
 			<tr>
-				<th>이름</th><th>성별</th><th>나이</th>
+				<th>아이디</th><th>이름</th><th>나이</th>
 			</tr>
 		</thead>
 		<tbody></tbody>
@@ -27,20 +27,15 @@ section {
 		let str = '';
 		
 		$.each(list, function (index, item) {
-			
-// 			str += '<tr>';
-// 			str += '	<td>' + item.name + '</td>';
-// 			str += '	<td>' + item.gender + '</td>';
-// 			str += '	<td>' + item.age + '</td>';
-// 			str += '</tr>';
-			
+			// 백틱(Backtick `)
 			str += `
 				<tr>
+					<td>${item.id}</td>
 					<td>${item.name}</td>
-					<td>${item.gender}</td>
 					<td>${item.age}</td>
 				</tr>
 			`;
+			
 		});
 		
 		$('tbody').html(str);
@@ -49,7 +44,7 @@ section {
 	$('#btn').click(function () {
 		
 		$.ajax({
-			url: 'json2.jsp',
+			url: 'json3.jsp',
 			success: function (data) {
 				console.log(typeof data);
 				console.log(data);
