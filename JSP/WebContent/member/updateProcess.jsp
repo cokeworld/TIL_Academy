@@ -16,7 +16,7 @@ if (id == null) {
 
 request.setCharacterEncoding("UTF-8");
 
-MemberDao memberDao = new MemberDao();
+MemberDao memberDao = MemberDao.getInstance();
 MemberVo memberVo = new MemberVo();
 
 memberVo.setId(request.getParameter("id"));

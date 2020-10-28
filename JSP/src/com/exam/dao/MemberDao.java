@@ -12,59 +12,17 @@ import com.exam.vo.MemberVo;
 
 public class MemberDao {
 	
-	private Connection getConnection() throws Exception {
-		// 헤로쿠 MySQL DB
-		// mysql://bec477009e8b36:112f7808@us-cdbr-east-02.cleardb.com/heroku_2a9d67c8b09e7af?reconnect=true&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul
-		
-		// 헤로쿠DB id : bec477009e8b36
-		// 헤로쿠DB pw : 112f7808
-		// 헤로쿠DB hostname : us-cdbr-east-02.cleardb.com
-		// 헤로쿠DB 스키마이름 : heroku_2a9d67c8b09e7af
-		
-		
-		
-		// DB접속정보
-		String dbUrl = "jdbc:mysql://localhost:3306/jspdb?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul";
-		String dbId = "myid";
-		String dbPwd = "mypwd";
-		
-		Connection con = null;
-		
-		// 1단계. DB드라이버 클래스 로딩
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		// 2단계. DB에 연결 시도. 연결후 Connection객체를 리턴함.
-		con = DriverManager.getConnection(dbUrl, dbId, dbPwd);
-		return con;
-	} // getConnection()
+	// 싱글톤 패턴 설계
+	private static MemberDao instance = new MemberDao();
 	
-	private void close(Connection con, PreparedStatement pstmt) {
-		close(con, pstmt, null);
+	public static MemberDao getInstance() {
+		return instance;
 	}
 	
-	private void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
-		try {
-			if (rs != null) {
-				rs.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		try {
-			if (pstmt != null) {
-				pstmt.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		try {
-			if (con != null) {
-				con.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	} // close()
-	
+	///////////////////////////////////////////////////////////
+
+	private MemberDao() {
+	}
 
 	// 회원정보 1명 insert하기
 	public void addMember(MemberVo memberVo) {
@@ -72,7 +30,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = getConnection();
+			con = JdbcUtils.getConnection();
 			
 			String sql = "";
 			sql += "INSERT INTO member (id, passwd, name, age, gender, email, reg_date) ";
@@ -94,7 +52,7 @@ public class MemberDao {
 		} finally {
 			// 예외 발생여부에 관계없이 무조건 정리작업 수행함.
 			// try블록에서 만든 객체를 정리하는 작업을 주로 함
-			close(con, pstmt);
+			JdbcUtils.close(con, pstmt);
 		}
 	} // addMember()
 	
@@ -112,7 +70,7 @@ public class MemberDao {
 		int check = -1; // 없는 아이디 상태값으로 초기화
 		
 		try {
-			con = getConnection();
+			con = JdbcUtils.getConnection();
 			// id에 해당하는 passwd 가져오기
 			sql = "SELECT passwd FROM member WHERE id = ?";
 			pstmt = con.prepareStatement(sql);
@@ -134,7 +92,7 @@ public class MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(con, pstmt, rs);
+			JdbcUtils.close(con, pstmt, rs);
 		}
 		return check;
 	} // userCheck()
@@ -153,7 +111,7 @@ public class MemberDao {
 		String sql = "";
 		
 		try {
-			con = getConnection();
+			con = JdbcUtils.getConnection();
 			
 			sql = "SELECT * FROM member ORDER BY id";
 			pstmt = con.prepareStatement(sql);
@@ -175,7 +133,7 @@ public class MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(con, pstmt, rs);
+			JdbcUtils.close(con, pstmt, rs);
 		}
 		return list;
 	} // getAllMembers()
@@ -192,7 +150,7 @@ public class MemberDao {
 		String sql = "";
 		
 		try {
-			con = getConnection();
+			con = JdbcUtils.getConnection();
 			
 			sql = "SELECT * FROM member WHERE id = ?";
 			pstmt = con.prepareStatement(sql);
@@ -213,35 +171,30 @@ public class MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(con, pstmt, rs);
+			JdbcUtils.close(con, pstmt, rs);
 		}
 		return memberVo;
 	} // getMemberById()
 	
-	// 특정id에 해당하는 회원정보 수정하기
+	// 특정id에 해당하는 회원 정보 수정하기
 	public void update(MemberVo memberVo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = getConnection();
+			con = JdbcUtils.getConnection();
 			
 			String sql = "";
 			sql += "UPDATE member ";
-			sql += "SET passwd = ?, ";
-			sql += "name = ?, ";
-			sql += "age = ?, ";
-			sql += "gender = ?, ";
-			sql += "email = ? ";
+			sql += "SET name = ?, age = ?, gender = ?, email = ? ";
 			sql += "WHERE id = ? ";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, memberVo.getPasswd());
-			pstmt.setString(2, memberVo.getName());
-			pstmt.setInt(3, memberVo.getAge());
-			pstmt.setString(4, memberVo.getGender());
-			pstmt.setString(5, memberVo.getEmail());
-			pstmt.setString(6, memberVo.getId());
+			pstmt.setString(1, memberVo.getName());
+			pstmt.setInt(2, memberVo.getAge());
+			pstmt.setString(3, memberVo.getGender());
+			pstmt.setString(4, memberVo.getEmail());
+			pstmt.setString(5, memberVo.getId());
 			
 			pstmt.executeUpdate();
 			
@@ -250,10 +203,9 @@ public class MemberDao {
 		} finally {
 			// 예외 발생여부에 관계없이 무조건 정리작업 수행함.
 			// try블록에서 만든 객체를 정리하는 작업을 주로 함
-			close(con, pstmt);
+			JdbcUtils.close(con, pstmt);
 		}
-	} // updateAll()
-	
+	} // addMember()
 	
 	// 특정id에 해당하는 회원 1명 삭제하기
 	public void deleteById(String id) {
@@ -261,7 +213,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = getConnection();
+			con = JdbcUtils.getConnection();
 			
 			String sql = "";
 			sql += "DELETE FROM member WHERE id = ? ";
@@ -273,7 +225,7 @@ public class MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(con, pstmt);
+			JdbcUtils.close(con, pstmt);
 		}
 	} // deleteById()
 	
@@ -284,7 +236,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = getConnection();
+			con = JdbcUtils.getConnection();
 			
 			String sql = "";
 			sql += "DELETE FROM member ";
@@ -295,7 +247,7 @@ public class MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(con, pstmt);
+			JdbcUtils.close(con, pstmt);
 		}
 	} // deleteAll()
 	

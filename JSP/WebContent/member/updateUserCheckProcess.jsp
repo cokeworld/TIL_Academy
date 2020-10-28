@@ -11,7 +11,7 @@ if(id==null) {
 
 String passwd = request.getParameter("passwd");
 
-MemberDao memberDao = new MemberDao();
+MemberDao memberDao = MemberDao.getInstance();
 int userCheck = memberDao.userCheck(id, passwd);
 if(userCheck == 1) {
 	response.sendRedirect("updateForm.jsp");

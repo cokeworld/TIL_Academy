@@ -22,7 +22,7 @@ if (id == null || !id.equals("admin")) {
 }
 
 // DAO 객체 준비
-MemberDao memberDao = new MemberDao();
+MemberDao memberDao = MemberDao.getInstance();
 // 전체회원정보 List로 가져오기
 List<MemberVo> memberList = memberDao.getAllMembers();
 
