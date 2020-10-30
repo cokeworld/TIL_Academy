@@ -12,22 +12,15 @@ import java.util.List;
 import com.exam.vo.BoardVo;
 
 public class BoardDao {
-	private BoardDao() {}
-
 	// 싱글톤
-
-	public static class LazyHolder {
-		public static final BoardDao instance = new BoardDao();
-	}
+	private static BoardDao instance = new BoardDao();
+	
 	public static BoardDao getInstance() {
-		return LazyHolder.instance;
+		return instance;
 	}
-//	private static BoardDao instance = new BoardDao();
-//	
-//	public static BoardDao getInstance() {
-//		return instance;
-//	}
 	/////////////
+
+	private BoardDao() {}
 	
 	public int getNextNum() {
 		Connection con = null;
@@ -291,14 +284,15 @@ public class BoardDao {
 			con = JdbcUtils.getConnection();
 			
 			sql  = "UPDATE board ";
-			sql += "SET name = ?, subject = ?, content = ? ";
+			sql += "SET name = ?, subject = ?, content = ?, file = ? ";
 			sql += "WHERE num = ? ";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, boardVo.getName());
 			pstmt.setString(2, boardVo.getSubject());
 			pstmt.setString(3, boardVo.getContent());
-			pstmt.setInt(4, boardVo.getNum());
+			pstmt.setString(4, boardVo.getFile());
+			pstmt.setInt(5, boardVo.getNum());
 			
 			pstmt.executeUpdate();
 			
@@ -333,26 +327,6 @@ public class BoardDao {
 		}
 	} // deleteBoard
 	
-	public void deleteAllBoards() {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		String sql = "";
-		
-		try {
-			con = JdbcUtils.getConnection();
-			
-			sql = "DELETE FROM board";
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JdbcUtils.close(con, pstmt);
-		}
-	} // deleteAllBoards
-	
 	
 	
 	public boolean updateAndAddReply(BoardVo boardVo) {
@@ -360,19 +334,22 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		String sql = "";
 		
-
 		try {
 			con = JdbcUtils.getConnection();
-			con.setAutoCommit(false);
 			
-			sql = "UPDATE board ";
+			con.setAutoCommit(false); // 수동커밋으로 변경
+			
+			sql  = "UPDATE board ";
 			sql += "SET re_seq = re_seq + 1 ";
-			sql += "WHERE re_ref = ? AND re_seq = ?";
+			sql += "WHERE re_ref = ? ";
+			sql += "AND re_seq > ? ";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, boardVo.getReRef());
 			pstmt.setInt(2, boardVo.getReSeq());
+			// update 수행
 			pstmt.executeUpdate();
+			// update문장을 가진 pstmt 객체 닫기
 			pstmt.close();
 			
 			sql  = "INSERT INTO board (num, name, passwd, subject, content, readcount, reg_date, ip, file, re_ref, re_lev, re_seq) ";
@@ -391,24 +368,27 @@ public class BoardDao {
 			pstmt.setInt(10, boardVo.getReRef());     // 같은 그룹
 			pstmt.setInt(11, boardVo.getReLev() + 1); // 답글쓰는 대상글의 들여쓰기 + 1
 			pstmt.setInt(12, boardVo.getReSeq() + 1); // 답글쓰는 대상글의 그룹내 순번 + 1
+			// insert문 실행
 			pstmt.executeUpdate();
 			
-			con.commit();
-			con.setAutoCommit(true);
+			con.commit(); // 커밋하기
+			
+			con.setAutoCommit(true); // 자동커밋은 기본값인 true로 수정
 			
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 			try {
-				con.rollback();
+				con.rollback(); // 단위작업에 문제가 생기면 롤백(전체취소)하기 
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+			
 			return false;
 		} finally {
 			JdbcUtils.close(con, pstmt);
 		}
-
 	} // updateAndAddReply
 	
 	
@@ -417,7 +397,6 @@ public class BoardDao {
 	public static void main(String[] args) {
 		
 		BoardDao boardDao = BoardDao.getInstance();
-//		boardDao.deleteAllBoards();
 		
 		for (int i=0; i<100; i++) {
 			BoardVo boardVo = new BoardVo();
@@ -425,7 +404,7 @@ public class BoardDao {
 			int num = boardDao.getNextNum();
 			boardVo.setNum(num);
 			boardVo.setName("홍길동" + num);
-			boardVo.setPasswd("1");
+			boardVo.setPasswd("1234");
 			boardVo.setSubject("글제목" + num);
 			boardVo.setContent("글내용" + num);
 			boardVo.setReadcount(0);
