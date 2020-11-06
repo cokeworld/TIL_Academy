@@ -11,6 +11,8 @@ public class MemberVo {
 	private String gender;  // 己喊
 	private String email;   // 捞皋老 林家
 	private Timestamp regDate;
+	private String address;
+	private String tel;
 	
 	public MemberVo() {
 		super();
@@ -51,6 +53,14 @@ public class MemberVo {
 		return regDate;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -79,11 +89,21 @@ public class MemberVo {
 		this.regDate = regDate;
 	}
 
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVo [id=" + id + ", passwd=" + passwd + ", name=" + name + ", age=" + age + ", gender=" + gender
-				+ ", email=" + email + ", regDate=" + regDate + "]";
+				+ ", email=" + email + ", regDate=" + regDate + ", address=" + address + ", tel=" + tel + "]";
 	}
+
+	
 }
 
 
