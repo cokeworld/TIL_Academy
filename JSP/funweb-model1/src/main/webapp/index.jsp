@@ -3,16 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Welcome to Fun Web</title>
-<link href="css/default.css" rel="stylesheet" type="text/css" media="all">
-<link href="css/front.css" rel="stylesheet" type="text/css" media="all">
-<link href="css/print.css" rel="stylesheet" type="text/css" media="print">
-<link href="css/iphone.css" rel="stylesheet" type="text/css" media="screen">
-<script type="text/javascript" src="script/jquery-1.6.1.min.js"></script>
-<script type="text/javascript" src="script/s3Slider.js"></script>
+<%-- head 컨텐트 영역 --%>
+<jsp:include page="/include/headContent.jsp" />
 
-<script type="text/javascript">
+<link href="/css/front.css" rel="stylesheet" type="text/css" media="all">
+
+<script src="/script/jquery-1.6.1.min.js"></script>
+<script src="/script/s3Slider.js"></script>
+<script>
 $(document).ready(function() { 
    $('#s3slider').s3Slider({ 
       timeOut: 4000 
@@ -24,7 +22,7 @@ $(document).ready(function() {
 <body>
 <div id="wrap">
 	<%-- header 영역 --%>
-	<jsp:include page="/include/topHeader.jsp"/>
+	<jsp:include page="/include/topHeader.jsp" />
 	
     <div class="clear"></div>
     <div id="main_img">
@@ -32,19 +30,19 @@ $(document).ready(function() {
 		<div id="s3slider">
 			<ul id="s3sliderContent">
 				<li class="s3sliderImage">
-					<img src="images/main_img.jpg" width="971" height="282">
+					<img src="/images/main_img.jpg" width="971" height="282">
 					<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam semper erat est. <br>
 						Aliquam metus elit, blandit eu luctus vitae, dictum sit amet mauris. Integer ut facilisis eros. <br>
 						Donec consectetur, velit id aliquam sagittis,</span>
 				</li>
 				<li class="s3sliderImage">
-					<img src="images/main_img1.jpg" width="971" height="282">
+					<img src="/images/main_img1.jpg" width="971" height="282">
 					<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam semper erat est. <br>
 						Aliquam metus elit, blandit eu luctus vitae, dictum sit amet mauris. Integer ut facilisis eros. <br>
 						Donec consectetur, velit id aliquam sagittis,</span>
 				</li>
 				<li class="s3sliderImage">
-					<img src="images/main_img2.jpg" width="971" height="282">
+					<img src="/images/main_img2.jpg" width="971" height="282">
 					<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam semper erat est. <br>
 						Aliquam metus elit, blandit eu luctus vitae, dictum sit amet mauris. Integer ut facilisis eros. <br>
 						Donec consectetur, velit id aliquam sagittis,</span>
@@ -125,10 +123,10 @@ $(document).ready(function() {
     </article>
 	
 	<div class="clear"></div>
-	
 	<%-- footer 영역 --%>
-	<jsp:include page="/include/bottomFooter.jsp"/>
+	<jsp:include page="/include/bottomFooter.jsp" />
 </div>
 
 </body>
 </html>
+    
