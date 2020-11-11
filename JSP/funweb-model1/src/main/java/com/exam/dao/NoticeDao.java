@@ -154,6 +154,49 @@ public class NoticeDao {
 	} // getCountAll()
 	
 	
+	// 검색어를 적용한 글갯수 가져오기
+	public int getCountBySearch(String category, String search) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		String sql = "";
+		
+		try {
+			con = JdbcUtils.getConnection();
+			
+			sql = "SELECT COUNT(*) FROM notice ";
+			
+			// 동적 sql 구현
+			if (category.equals("subject")) {
+				sql += "WHERE subject LIKE CONCAT('%', ?, '%') ";
+			} else if (category.equals("content")) {
+				sql += "WHERE content LIKE CONCAT('%', ?, '%') ";
+			} else if (category.equals("id")) {
+				sql += "WHERE id LIKE CONCAT('%', ?, '%') ";
+			}
+			
+			pstmt = con.prepareStatement(sql);
+			
+			if (!category.equals("")) { // 검색어가 있을때
+				pstmt.setString(1, search);  // 물음표에 검색어 설정
+			}
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.close(con, pstmt, rs);
+		}
+		return count;
+	} // getCountBySearch()
+	
+	
 	public List<NoticeVo> getNotices(int startRow, int pageSize) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -197,7 +240,69 @@ public class NoticeDao {
 			JdbcUtils.close(con, pstmt, rs);
 		}
 		return list;
-	} // getBoards()
+	} // getNotices()
+	
+	
+	public List<NoticeVo> getNoticesBySearch(int startRow, int pageSize, String category, String search) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<NoticeVo> list = new ArrayList<>();
+		String sql = "";
+		
+		try {
+			con = JdbcUtils.getConnection();
+			
+			sql  = "SELECT * ";
+			sql += "FROM notice ";
+			// 동적 sql 구현
+			if (category.equals("subject")) {
+				sql += "WHERE subject LIKE CONCAT('%', ?, '%') ";
+			} else if (category.equals("content")) {
+				sql += "WHERE content LIKE CONCAT('%', ?, '%') ";
+			} else if (category.equals("id")) {
+				sql += "WHERE id LIKE CONCAT('%', ?, '%') ";
+			}
+			sql += "ORDER BY re_ref DESC, re_seq ASC ";
+			sql += "LIMIT ?, ? ";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			if (!category.equals("")) { // 검색어가 있을때
+				pstmt.setString(1, search);  // 물음표에 검색어 설정
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, pageSize);
+			} else { // 검색어가 없을때
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, pageSize);
+			}
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				NoticeVo noticeVo = new NoticeVo();
+				noticeVo.setNum(rs.getInt("num"));
+				noticeVo.setId(rs.getString("id"));
+				noticeVo.setSubject(rs.getString("subject"));
+				noticeVo.setContent(rs.getString("content"));
+				noticeVo.setReadcount(rs.getInt("readcount"));
+				noticeVo.setRegDate(rs.getTimestamp("reg_date"));
+				noticeVo.setIp(rs.getString("ip"));
+				noticeVo.setReRef(rs.getInt("re_ref"));
+				noticeVo.setReLev(rs.getInt("re_lev")); 
+				noticeVo.setReSeq(rs.getInt("re_seq"));
+				
+				list.add(noticeVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.close(con, pstmt, rs);
+		}
+		return list;
+	} // getNoticesBySearch()
+	
 	
 	
 	public void updateBoard(NoticeVo noticeVo) {
