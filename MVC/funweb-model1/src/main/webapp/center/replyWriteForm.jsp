@@ -10,8 +10,13 @@ if (id == null) {
 }
 %>
 
-<%-- 파라미터값  pageNum  가져오기 --%>
-<% String pageNum = request.getParameter("pageNum"); %>
+<%-- 파라미터값  reRef  reLev  reSeq  pageNum  가져오기 --%>
+<%
+String reRef = request.getParameter("reRef");
+String reLev = request.getParameter("reLev");
+String reSeq = request.getParameter("reSeq");
+String pageNum = request.getParameter("pageNum");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -35,10 +40,13 @@ if (id == null) {
 	
 	<article>
 		
-	<h1>텍스트 게시판 글쓰기</h1>
+	<h1>텍스트 게시판 답글쓰기</h1>
 		
-	<form action="writePro.jsp" method="post" name="frm">
+	<form action="replyWritePro.jsp" method="post" name="frm">
 	<input type="hidden" name="pageNum" value="<%=pageNum %>">
+	<input type="hidden" name="reRef" value="<%=reRef %>">
+	<input type="hidden" name="reLev" value="<%=reLev %>">
+	<input type="hidden" name="reSeq" value="<%=reSeq %>">
 	<table id="notice">
 		<tr>
 			<th scope="col" class="twrite">작성자</th>
@@ -61,7 +69,7 @@ if (id == null) {
 	</table>
 
 	<div id="table_search">
-		<input type="submit" value="글쓰기" class="btn">
+		<input type="submit" value="답글쓰기" class="btn">
 		<input type="reset" value="다시쓰기" class="btn">
 		<input type="button" value="목록보기" class="btn" onclick="location.href = 'notice.jsp?pageNum=<%=pageNum %>'">
 	</div>

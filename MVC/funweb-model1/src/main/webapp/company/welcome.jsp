@@ -3,26 +3,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%-- head 영역 --%>
-<jsp:include page="/include/headContent.jsp"/>
+<%-- head 컨텐트 영역 --%>
+<jsp:include page="/include/headContent.jsp" />
+
+<link href="/css/subpage.css" rel="stylesheet" type="text/css"  media="all">
 </head>
 
 <body>
 <div id="wrap">
-	<%-- header 영역 --%> 
-  	<jsp:include page="/include/topHeader.jsp"/>
-  	
+	<%-- header 영역 --%>
+	<jsp:include page="/include/topHeader.jsp" />
+  
 	<div class="clear"></div>
 	<div id="sub_img"></div>
   
 	<div class="clear"></div>
-	
 	<%-- nav 영역 --%>
-	<jsp:include page="/include/submenuCompany.jsp"/>
+	<jsp:include page="/include/submenuCompany.jsp" />
 	
 	<article>
 		<h1>Welcome</h1>
-		<figure class="ceo"><img src="/images/company/CEO.jpg" width="196" height="226" alt="CEO">
+		<figure class="ceo"><img src="../images/company/CEO.jpg" width="196" height="226" alt="CEO">
 		<figcaption>Fun Web CEO Michael</figcaption></figure>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam bibendum, libero faucibus porttitor bibendum, lorem purus sollicitudin lacus, ut laoreet sem dui non nibh. Fusce tempor, eros vulputate luctus malesuada, nunc nisi rutrum massa, vestibulum rhoncus metus tellus in eros. Ut vehicula luctus cursus. Aliquam nunc neque, condimentum eu fringilla quis, feugiat in erat. Aliquam vel neque dolor, eu porttitor nulla. Cras ac dui metus, non viverra ligula. Maecenas sed tortor justo. Duis vehicula nisl sed sapien egestas ut aliquet purus mattis. Vestibulum vitae libero sapien, sed ultricies lacus. Morbi sapien metus, ullamcorper rhoncus cursus in, facilisis id felis. Aliquam id elit lacus, at laoreet enim. Nullam quis purus dui, eu molestie augue.</p>
 		<p>Nam venenatis neque quis tortor laoreet egestas hendrerit id diam. Nam adipiscing urna non tortor ornare vel consectetur est cursus. Morbi sed libero quam, sed scelerisque ligula. Vivamus vitae massa in quam hendrerit porttitor. Vivamus ac feugiat odio. In hac habitasse platea dictumst. Proin porta tempus ligula ut eleifend. Maecenas tincidunt elementum purus, nec venenatis nisl sodales vel. Mauris at neque nisi, nec tincidunt nulla. Mauris porta, nunc et semper lobortis, sem erat tempus massa, at porttitor dolor mi non sem.</p>
@@ -31,9 +32,10 @@
     
 	<div class="clear"></div>
 	<%-- footer 영역 --%>
-	<jsp:include page="/include/bottomFooter.jsp"/>;
+	<jsp:include page="/include/bottomFooter.jsp" />
 </div>
 
 </body>
 </html>   
 
+    
