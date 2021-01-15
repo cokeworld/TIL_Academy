@@ -51,7 +51,7 @@ a.active {
 							<img src="/images/center/level.gif" width="${ notice.reLev * 15 }" height="13">
 							<img src="/images/center/re.gif">
 						</c:if>
-						<a href="content.do?num=${ notice.num }&pageNum=${ pageNum }">${ notice.subject }</a>
+						<a href="/notice/content?num=${ notice.num }&pageNum=${ pageNum }">${ notice.subject }</a>
 					</td>
 					<td>${ notice.id }</td>
 					<td><fmt:formatDate value="${ notice.regDate }" pattern="yyyy.MM.dd"/></td>
@@ -81,7 +81,7 @@ a.active {
 			
 			<%-- 로그인 했을때만 [글쓰기] 버튼 보이기 --%>
 			<c:if test="${ not empty sessionScope.id }">
-				<input type="button" value="글쓰기" class="btn" onclick="location.href='writeForm.do?pageNum=${ pageNum }'">
+				<input type="button" value="글쓰기" class="btn" onclick="location.href='/notice/write?pageNum=${ pageNum }'">
 			</c:if>
 
 		</form>
