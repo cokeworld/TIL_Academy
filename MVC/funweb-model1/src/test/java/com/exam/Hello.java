@@ -1,7 +1,7 @@
-package com.exam.vo;
+package com.exam;
 
 public class Hello {
-
+	
 	public static String helloWorld() {
 		return "Hello world!";
 	}
@@ -11,8 +11,11 @@ public class Hello {
 	}
 	
 	public static void receivePositiveNumber(int num) throws Exception {
-		if (num < 0) {
-			throw new Exception("Negative number is not possible");
+		if (num < 0) { // 음수
+			throw new Exception("음수는 받을 수 없습니다..");
 		}
+		// 양수
 	}
+	
+	
 }

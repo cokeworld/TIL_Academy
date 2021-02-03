@@ -1,4 +1,4 @@
-package com.exam.vo;
+package com.exam;
 
 public class Calc {
 

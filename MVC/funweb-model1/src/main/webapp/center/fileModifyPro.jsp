@@ -59,7 +59,7 @@ Enumeration<String> enu = multi.getFileNames(); // 파일선택상자의 name속
 while (enu.hasMoreElements()) {
 	String fname = enu.nextElement();
 	String filename = multi.getFilesystemName(fname);
-	
+	// 파일입력상자에서 선택하지않은 요소는 건너뛰기
 	if (filename == null) {
 		continue;
 	}
