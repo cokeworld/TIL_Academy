@@ -1,13 +1,8 @@
 # Java 웹개발자과정 학습노트
+* 목적: IT교육센터에서 학습 내용 정리
+* 기간: 2020.08.14 ~ 2021.02.23 (6개월)
+---
 
-* IT교육센터에서 배운 학습내용 정리.
-<br/>
-
-## 기간
-* 2020.08.14 ~ 2021.02.23 (6개월)
-<br/>
-
-## 목차
 ### Android
 * [안드로이드 연습문제](https://github.com/cokeworld/TIL_Academy/tree/master/Android)
 
@@ -51,7 +46,9 @@
 * [jQuery 활용](https://github.com/cokeworld/TIL_Academy/tree/master/JavaScript/jQuery)
 
 ### MVC
-
+* [JSP Model1](https://github.com/cokeworld/TIL_Academy/tree/master/MVC/funweb-model1)
+* [JSP Model2](https://github.com/cokeworld/TIL_Academy/tree/master/MVC/funweb-model2)
+* [Spring MVC](https://github.com/cokeworld/TIL_Academy/tree/master/MVC/funweb-spring)
 
 ### SQL
 * [SQL 연습문제](https://github.com/cokeworld/TIL_Academy/tree/master/SQL/SQL%EC%97%B0%EC%8A%B5)
