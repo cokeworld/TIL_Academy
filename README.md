@@ -25,14 +25,15 @@
 * [JSP 게시판 만들기](https://github.com/cokeworld/TIL_Academy/tree/master/JSP/jsp_study)
 
 ### Java
-* [method, datatype, operator](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch02_method%2C%20datatype%2C%20operator)
-* [for, if, while, array, try&catch](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch03_for%2C%20if%2C%20while%2C%20array%2C%20try%26catch)
-* [class&object](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch04_class%26object/src)
-* [if&while](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch03_if%26while)
-* [inheritance](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch05_inheritance/src)
-* [list, hash, map](https://github.com/cokeworld/TIL_Academy/tree/master/Java/list_hash_map)
-* [collection](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch11_collection)
-* [lambda expressions](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch14_Lambda_Expressions)
+* [method, datatype, operator](https://github.com/cokeworld/TIL_Academy/tree/master/Java/method%2C%20datatype%2C%20operator)
+* [for, if, while, array, try&catch](https://github.com/cokeworld/TIL_Academy/tree/master/Java/for%2C%20if%2C%20while%2C%20array%2C%20try%26catch)
+* [class, object](https://github.com/cokeworld/TIL_Academy/tree/master/Java/class%2C%20object/src)
+* [if, while](https://github.com/cokeworld/TIL_Academy/tree/master/Java/for%2C%20if%2C%20while%2C%20array%2C%20try%26catch)
+* [array](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Project)
+* [inheritance](https://github.com/cokeworld/TIL_Academy/tree/master/Java/inheritance)
+* [list, hash, map](https://github.com/cokeworld/TIL_Academy/tree/master/Java/list%2C%20hash%2C%20map)
+* [collection](https://github.com/cokeworld/TIL_Academy/tree/master/Java/collection)
+* [lambda expressions](https://github.com/cokeworld/TIL_Academy/tree/master/Java/lambda_expressions)
 * [object-oriented programing](https://github.com/cokeworld/TIL_Academy/tree/master/Java/OOP_practice)
 * [JUnit](https://github.com/cokeworld/TIL_Academy/tree/master/Java/junit)
 * [socket](https://github.com/cokeworld/TIL_Academy/tree/master/Java/socket)
@@ -40,7 +41,7 @@
 * [fileClass](https://github.com/cokeworld/TIL_Academy/tree/master/Java/fileClass)
 * [schedule](https://github.com/cokeworld/TIL_Academy/tree/master/Java/schedule)
 * [email](https://github.com/cokeworld/TIL_Academy/tree/master/Java/email)
-* [JFrame](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch10_GUI)
+* [JFrame](https://github.com/cokeworld/TIL_Academy/tree/master/Java/jframe)
 
 ### JavaScript
 * [JS기초개념](https://github.com/cokeworld/TIL_Academy/tree/master/JavaScript/JS01_%EA%B8%B0%EC%B4%88)
