@@ -1,13 +1,11 @@
 # Java 웹개발자과정 학습노트
 
-* IT교육센터에서 배운 내용을 기록으로 남깁니다.
-* 과정 중간에 기록을 시작하여 데이터 공백 존재
+* IT교육센터에서 배운 학습내용 정리.
 <br/>
 
 ## 기간
-
 * 2020.08.14 ~ 2021.02.23 (6개월)
-
+<br/>
 
 ## 목차
 ### Android
@@ -27,29 +25,29 @@
 * [JSP 게시판 만들기](https://github.com/cokeworld/TIL_Academy/tree/master/JSP/jsp_study)
 
 ### Java
-
-[method, datatype, operator](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch02_method%2C%20datatype%2C%20operator)
-
-[for, if, while, array, try&catch](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch03_for%2C%20if%2C%20while%2C%20array%2C%20try%26catch)
-
-[class&object](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch04_class%26object/src)
-
-[if&while](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch03_if%26while)
-
-[inheritance](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch05_inheritance/src)
-
-[GUI](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch10_GUI)
-
-[collection](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch11_collection)
-
-[lambda expressions](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch14_Lambda_Expressions)
+* [method, datatype, operator](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch02_method%2C%20datatype%2C%20operator)
+* [for, if, while, array, try&catch](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch03_for%2C%20if%2C%20while%2C%20array%2C%20try%26catch)
+* [class&object](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch04_class%26object/src)
+* [if&while](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch03_if%26while)
+* [inheritance](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch05_inheritance/src)
+* [list, hash, map](https://github.com/cokeworld/TIL_Academy/tree/master/Java/list_hash_map)
+* [collection](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch11_collection)
+* [lambda expressions](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch14_Lambda_Expressions)
+* [object-oriented programing](https://github.com/cokeworld/TIL_Academy/tree/master/Java/OOP_practice)
+* [JUnit](https://github.com/cokeworld/TIL_Academy/tree/master/Java/junit)
+* [socket](https://github.com/cokeworld/TIL_Academy/tree/master/Java/socket)
+* [thread](https://github.com/cokeworld/TIL_Academy/tree/master/Java/thread)
+* [fileClass](https://github.com/cokeworld/TIL_Academy/tree/master/Java/fileClass)
+* [schedule](https://github.com/cokeworld/TIL_Academy/tree/master/Java/schedule)
+* [email](https://github.com/cokeworld/TIL_Academy/tree/master/Java/email)
+* [JFrame](https://github.com/cokeworld/TIL_Academy/tree/master/Java/Java%EA%B8%B0%EC%B4%88/ch10_GUI)
 
 ### JavaScript
 * [JS기초개념](https://github.com/cokeworld/TIL_Academy/tree/master/JavaScript/JS01_%EA%B8%B0%EC%B4%88)
 * [이벤트](https://github.com/cokeworld/TIL_Academy/tree/master/JavaScript/JS02_event)
 * [Form제어](https://github.com/cokeworld/TIL_Academy/tree/master/JavaScript/JS03_%ED%8F%BC%EC%A0%9C%EC%96%B4)
 * [객체생성](https://github.com/cokeworld/TIL_Academy/tree/master/JavaScript/JS04_%EA%B0%9D%EC%B2%B4)
-* [jQuery](https://github.com/cokeworld/TIL_Academy/tree/master/JavaScript/jQuery)
+* [jQuery 활용](https://github.com/cokeworld/TIL_Academy/tree/master/JavaScript/jQuery)
 
 ### MVC
 
