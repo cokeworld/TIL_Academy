@@ -3,15 +3,15 @@ interface TestInterface {
 	public int plusAandB(int a, int b);
 }
 
-public class ¶÷´Ù½Ä¿¬½À {
+public class ëŒë‹¤ì‹ì—°ìŠµ {
 
 	public static void main(String[] args) {
 		
-//		ÀÎÅÍÆäÀÌ½º¸¦ Á÷Á¢ Å¬·¡½º·Î ±¸ÇöÇØ¼­ ¸Ş¼­µå È£Ãâ
+//		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ş¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½
 //		TestInterface ti = new TestInterfaceImpl();
 //		System.out.println(ti.plusAandB(1, 2));
 		
-//		Å¬·¡½º¸¦ ÀÍ¸í ±¸Çö°´Ã¼·Î ±¸ÇöÇØ¼­ ¸Ş¼Òµå ½ÇÇà
+//		Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ş¼Òµï¿½ ï¿½ï¿½ï¿½ï¿½
 //		TestInterface ti2 = new TestInterface() {
 //
 //			@Override

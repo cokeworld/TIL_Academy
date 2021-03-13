@@ -1,35 +1,37 @@
-public class Ex01_´ÙÇü¼ºÈ°¿ë {
+package collection;
 
+public class Ex01_ë‹¤í˜•ì„±í™œìš© {
+	
 	public static void main(String[] args) {
-
-		// Puppy°´Ã¼¸¦ PuppyÂüÁ¶º¯¼ö·Î ÀúÀåÇØ¼­ ¸Þ¼Òµå È£Ãâ½Ã¿¡´Â Á¤Àû(ÄÄÆÄÀÏ½Ã°£) ¹ÙÀÎµù¸¸ ¹ß»ýÇÔ.
-		Puppy puppy = new Puppy();
-		puppy.speak();
-
-		// Puppy°´Ã¼¸¦ AnimalÂüÁ¶º¯¼ö·Î ÀúÀåÇØ¼­ ¸Þ¼Òµå È£Ãâ½Ã¿¡´Â Á¤Àû ¹ÙÀÎµù ÈÄ µ¿Àû(½ÇÇà½Ã°£) ¹ÙÀÎµù±îÁö ¹ß»ýÇÔ.
-		Animal animal = new Puppy();
-		animal.speak();
-
-		// .. º¯¼ö º¯°æ
-		// ´ÙÇü¼ºÀÇ °­Á¡ÀÎ ¼öÁ¤ ¿ëÀÌÇÑ Á¡À» »ì¸²
-		// Puppy µ¥ÀÌÅÍ Å¸ÀÔ ¼³Á¤½Ã¿¡ Puppy°´Ã¼¸¸ ¼öÁ¤ °¡´ÉÇÏÁö¸¸ Animal µ¥ÀÌÅÍ Å¸ÀÔ »ç¿ë½Ã Puppy, Cat µÑ´Ù »ç¿ë°¡´É.
-		animal = new Cat();
-		animal.speak();
-		
-		System.out.println("////////////////");
-		
-		Vet vet = new Vet();
-		Puppy poodle = new Puppy();
-		Cat cat = new Cat();
-		vet.ÁÖ»ç³õ±â(poodle);
-		vet.ÁÖ»ç³õ±â(cat);
-		Animal duck = new Duck();
-		vet.ÁÖ»ç³õ±â(duck);
-		
-		// ÀÎÅÍÆäÀÌ½º »ó¼Ó °´Ã¼ ±¸Çö
-		Robot robotPuppy = new RobotPuppy();
-		robotPuppy.secure();
-	}
+	
+			// Puppyï¿½ï¿½Ã¼ï¿½ï¿½ Puppyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°ï¿½) ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½.
+			Puppy puppy = new Puppy();
+			puppy.speak();
+	
+			// Puppyï¿½ï¿½Ã¼ï¿½ï¿½ Animalï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Ã°ï¿½) ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½.
+			Animal animal = new Puppy();
+			animal.speak();
+	
+			// .. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ì¸²
+			// Puppy ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ Puppyï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Animal ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Puppy, Cat ï¿½Ñ´ï¿½ ï¿½ï¿½ë°¡ï¿½ï¿½.
+			animal = new Cat();
+			animal.speak();
+			
+			System.out.println("////////////////");
+			
+			Vet vet = new Vet();
+			Puppy poodle = new Puppy();
+			Cat cat = new Cat();
+			vet.ï¿½Ö»ï¿½ï¿½ï¿½ï¿½(poodle);
+			vet.ï¿½Ö»ï¿½ï¿½ï¿½ï¿½(cat);
+			Animal duck = new Duck();
+			vet.ï¿½Ö»ï¿½ï¿½ï¿½ï¿½(duck);
+			
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+			Robot robotPuppy = new RobotPuppy();
+			robotPuppy.secure();
+		}
 }
 
 class Animal {
@@ -38,20 +40,20 @@ class Animal {
 	String gender;
 	
 	void speak() {
-		System.out.println("µ¿¹° ¼Ò¸®³»±â");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ï¿½ï¿½");
 	}
 
 }
 
 class Puppy extends Animal implements Robot{
-	// »ý¼ºÀÚ - ¼±¾ðµÇÁö ¾ÊÀ¸¸é ÄÄÆÄÀÏ °úÁ¤¿¡¼­ ÀÚµ¿ »ý¼º
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
 	public Puppy() {
 
 	}
 
 	@Override
 	void speak() {
-		System.out.println("¸Û¸Û");
+		System.out.println("ï¿½Û¸ï¿½");
 	}
 
 	@Override
@@ -64,27 +66,27 @@ class Puppy extends Animal implements Robot{
 class Cat extends Animal {
 	@Override
 	void speak() {
-		System.out.println(age + "»ì" + gender + "°í¾çÀÌ°¡ ¾ß¿Ë ¿î´Ù.");
+		System.out.println(age + "ï¿½ï¿½" + gender + "ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½.");
 	}
 }
 
 class Duck extends Animal {
 	@Override
 	void speak() {
-		System.out.println(age + "»ì" + gender + "¿À¸®°¡ ²Ð²Ð ¿î´Ù.");
+		System.out.println(age + "ï¿½ï¿½" + gender + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð²ï¿½ ï¿½ï¿½ï¿½.");
 	}
 }
 
 class Vet {
 	
-	void ÁÖ»ç³õ±â(Puppy puppy) {
-		// °­¾ÆÁöÇÑÅ× ÁÖ»ç ³õÀ¸¸é °­¾ÆÁö°¡ Â¢À½
-		// ´ÜÁ¡- °í¾çÀÌ¿¡°Ô ÁÖ»ç¸¦ ³õÀ¸·Á ÇÏ¸é °í¾çÀÌ¿ë method¸¦ Ãß°¡ »ý¼ºÇØ¾ßÇÔ.
+	void ï¿½Ö»ï¿½ï¿½ï¿½ï¿½(Puppy puppy) {
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Â¢ï¿½ï¿½
+		// ï¿½ï¿½ï¿½ï¿½- ï¿½ï¿½ï¿½ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½Ö»ç¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ì¿ï¿½ methodï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½.
 		puppy.speak();
 	}
 	
-	void ÁÖ»ç³õ±â(Animal animal) {
-		// »óÀ§Å¸ÀÔ Animal »ç¿ëÇÔÀ¸·Î¼­ ´ÙÇü¼º È°¿ë
+	void ï¿½Ö»ï¿½ï¿½ï¿½ï¿½(Animal animal) {
+		// ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ Animal ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½
 		animal.speak();
 	}
 }
@@ -99,7 +101,7 @@ class RobotPuppy implements Robot {
 
 	@Override
 	public void secure() {
-		System.out.println("ÁýÁöÅ°±â on");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ on");
 	}
 
 	@Override
